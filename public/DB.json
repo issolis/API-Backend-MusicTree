@@ -53,6 +53,12 @@
       "description": "This cluster is active by default.",
       "active": true,
       "date": "2025-05-18T23:10:24.595Z"
+    },
+    {
+      "name": "Gammaaa",
+      "description": "Cluster with a short description.",
+      "active": false,
+      "date": "2025-05-19T02:10:16.138Z"
     }
   ],
   "genders": [
@@ -129,18 +135,70 @@
       "date": "2025-05-19T00:05:36.880Z"
     }
   ],
-  "gender_cluster": [
-    {
-      "clusterName": "Electronic Vibes",
-      "genreName": "Synthwave"
-    },
-    {
-      "clusterName": "Global Rhythms",
-      "genreName": "Afrobeats"
-    },
+  "subgenders": [
     {
       "clusterName": "Asian Pop Explosion",
-      "genreName": "K-Pop"
+      "genderName": "K-Pop"
+    },
+    {
+      "name": "Gammaaa",
+      "description": "Cluster with a short description.",
+      "active": false,
+      "date": "2025-05-19T02:26:46.157Z"
+    }
+  ],
+  "gender_subgender": [
+    {
+      "name": "Gammaaa",
+      "description": "Cluster with a short description.",
+      "active": false,
+      "date": "2025-05-18T23:02:39.708Z"
+    },
+    {
+      "name": "Gammaaa",
+      "description": "Cluster with a short description.",
+      "active": false,
+      "date": "2025-05-18T23:02:39.708Z"
+    },
+    {
+      "name": "Gammaaa",
+      "description": "Cluster with a short description.",
+      "active": false,
+      "date": "2025-05-18T23:02:39.708Z"
+    }
+  ],
+  "gender_gender": [
+    {
+      "name": "Gammaaa",
+      "description": "Cluster with a short description.",
+      "active": false,
+      "date": "2025-05-18T23:02:39.708Z"
+    }
+  ],
+  "subgender_subgender": [
+    {
+      "name": "Gammaaa",
+      "description": "Cluster with a short description.",
+      "active": false,
+      "date": "2025-05-18T23:02:39.708Z"
+    },
+    {
+      "name": "Gammaaa",
+      "description": "Cluster with a short description.",
+      "active": false,
+      "date": "2025-05-18T23:02:39.708Z"
+    },
+    {
+      "name": "Gammaaa",
+      "description": "Cluster with a short description.",
+      "active": false,
+      "date": "2025-05-18T23:02:39.708Z"
+    },
+    {
+      "name": "Gammaaa",
+      "description": "Cluster with a short description.",
+      "active": false,
+      "date": "2025-05-18T23:02:39.708Z"
     }
   ]
 }
