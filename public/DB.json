@@ -1,0 +1,146 @@
+{
+  "clusters": [
+    {
+      "name": "Alpha Cluster",
+      "description": "This is the first test cluster.",
+      "active": true,
+      "date": "2025-05-18T23:02:27.960Z"
+    },
+    {
+      "name": "Gamma",
+      "description": "Cluster with a short description.",
+      "active": false,
+      "date": "2025-05-18T23:02:39.708Z"
+    },
+    {
+      "name": "DeltaClusterLongName",
+      "description": "Optional description that does not exceed 300 characters. It can contain any relevant information about this cluster.",
+      "active": true,
+      "date": "2025-05-18T23:02:45.539Z"
+    },
+    {
+      "name": "Zeta1234567890",
+      "description": "A description that is sufficiently short.",
+      "active": false,
+      "date": "2025-05-18T23:02:52.980Z"
+    },
+    {
+      "name": "EtaCluster",
+      "description": "Description up to 300 characters, example: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "active": true,
+      "date": "2025-05-18T23:02:59.931Z"
+    },
+    {
+      "name": "IotaClusterTest",
+      "description": "No description provided.",
+      "active": true,
+      "date": "2025-05-18T23:03:20.563Z"
+    },
+    {
+      "name": "Kappa",
+      "description": "This cluster is active by default.",
+      "active": true,
+      "date": "2025-05-18T23:03:25.565Z"
+    },
+    {
+      "name": "Kappa",
+      "description": "This cluster is active by default.",
+      "active": true,
+      "date": "2025-05-18T23:09:50.293Z"
+    },
+    {
+      "name": "Kappa",
+      "description": "This cluster is active by default.",
+      "active": true,
+      "date": "2025-05-18T23:10:24.595Z"
+    }
+  ],
+  "genders": [
+    {
+      "name": "Synthwave",
+      "description": "A genre that draws inspiration from 1980s music, movies, and video games, featuring retro synthesizers and nostalgic themes.",
+      "active": true,
+      "color": "#FF66CC",
+      "year": 1985,
+      "country": "United States",
+      "date": "2025-05-19T00:04:44.600Z"
+    },
+    {
+      "name": "Afrobeats",
+      "description": "A contemporary genre combining West African musical styles with American funk, jazz, and soul.",
+      "active": true,
+      "color": "#FFA500",
+      "year": 2000,
+      "country": "Nigeria",
+      "date": "2025-05-19T00:04:56.221Z"
+    },
+    {
+      "name": "K-Pop",
+      "description": "A genre of popular music originating in South Korea that incorporates elements from pop, hip hop, and R&B.",
+      "active": true,
+      "color": "#FF69B4",
+      "year": 1992,
+      "country": "South Korea",
+      "date": "2025-05-19T00:05:03.220Z"
+    },
+    {
+      "name": "Reggaeton",
+      "description": "A genre originating in Puerto Rico that blends Latin rhythms with hip hop and dancehall.",
+      "active": true,
+      "color": "#FFD700",
+      "year": 1990,
+      "country": "Puerto Rico",
+      "date": "2025-05-19T00:05:08.971Z"
+    },
+    {
+      "name": "Lo-fi",
+      "description": "A music genre characterized by its relaxed beats and the aesthetic of low-fidelity recordings.",
+      "active": true,
+      "color": "#B0C4DE",
+      "year": 2010,
+      "country": "United States",
+      "date": "2025-05-19T00:05:15.784Z"
+    },
+    {
+      "name": "Drill",
+      "description": "A style of trap music that originated in Chicago and later evolved in the UK, known for its dark and gritty lyrics.",
+      "active": true,
+      "color": "#696969",
+      "year": 2012,
+      "country": "United Kingdom",
+      "date": "2025-05-19T00:05:23.427Z"
+    },
+    {
+      "name": "J-Pop",
+      "description": "Japanese pop music with catchy melodies and influence from Western pop culture.",
+      "active": true,
+      "color": "#87CEFA",
+      "year": 1990,
+      "country": "Japan",
+      "date": "2025-05-19T00:05:29.439Z"
+    },
+    {
+      "name": "Tango",
+      "description": "A genre of music and dance that originated in the Rio de la Plata region and is known for its dramatic and passionate rhythms.",
+      "active": true,
+      "color": "#8B0000",
+      "year": 1900,
+      "country": "Argentina",
+      "date": "2025-05-19T00:05:36.880Z"
+    }
+  ],
+  "gender_cluster": [
+    {
+      "clusterName": "Electronic Vibes",
+      "genreName": "Synthwave"
+    },
+    {
+      "clusterName": "Global Rhythms",
+      "genreName": "Afrobeats"
+    },
+    {
+      "clusterName": "Asian Pop Explosion",
+      "genreName": "K-Pop"
+    }
+  ]
+}
