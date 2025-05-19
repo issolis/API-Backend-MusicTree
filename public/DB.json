@@ -53,15 +53,9 @@
       "description": "This cluster is active by default.",
       "active": true,
       "date": "2025-05-18T23:10:24.595Z"
-    },
-    {
-      "name": "Gammaaa",
-      "description": "Cluster with a short description.",
-      "active": false,
-      "date": "2025-05-19T02:10:16.138Z"
     }
   ],
-  "genders": [
+  "genres": [
     {
       "name": "Synthwave",
       "description": "A genre that draws inspiration from 1980s music, movies, and video games, featuring retro synthesizers and nostalgic themes.",
@@ -135,25 +129,21 @@
       "date": "2025-05-19T00:05:36.880Z"
     }
   ],
-  "subgenders": [
+  "subgenres": [
     {
       "clusterName": "Asian Pop Explosion",
       "genderName": "K-Pop"
-    },
-    {
-      "name": "Gammaaa",
-      "description": "Cluster with a short description.",
-      "active": false,
-      "date": "2025-05-19T02:26:46.157Z"
     }
   ],
-  "gender_subgender": [
+  "genre_subgenre": [
     {
       "name": "Gammaaa",
       "description": "Cluster with a short description.",
       "active": false,
       "date": "2025-05-18T23:02:39.708Z"
-    },
+    }
+  ],
+  "genre_genre": [
     {
       "name": "Gammaaa",
       "description": "Cluster with a short description.",
@@ -167,7 +157,7 @@
       "date": "2025-05-18T23:02:39.708Z"
     }
   ],
-  "gender_gender": [
+  "subgenre_subgenre": [
     {
       "name": "Gammaaa",
       "description": "Cluster with a short description.",
@@ -175,25 +165,7 @@
       "date": "2025-05-18T23:02:39.708Z"
     }
   ],
-  "subgender_subgender": [
-    {
-      "name": "Gammaaa",
-      "description": "Cluster with a short description.",
-      "active": false,
-      "date": "2025-05-18T23:02:39.708Z"
-    },
-    {
-      "name": "Gammaaa",
-      "description": "Cluster with a short description.",
-      "active": false,
-      "date": "2025-05-18T23:02:39.708Z"
-    },
-    {
-      "name": "Gammaaa",
-      "description": "Cluster with a short description.",
-      "active": false,
-      "date": "2025-05-18T23:02:39.708Z"
-    },
+  "genre_cluster": [
     {
       "name": "Gammaaa",
       "description": "Cluster with a short description.",

@@ -11,13 +11,13 @@ export class DBManipulator {
     return result === 1 ? 200 : 400;
   }
 
-  async addGender(gender) {
-    const result = await this.manipulator.addData(this.path, gender, 'genders');
+  async addGenre(genre) {
+    const result = await this.manipulator.addData(this.path, genre, 'genres');
     return result === 1 ? 200 : 400;
   }
 
-   async addSubgender(gender) {
-    const result = await this.manipulator.addData(this.path, gender, 'subgenders');
+   async addSubgenre(subgenre) {
+    const result = await this.manipulator.addData(this.path, subgenre, 'subgenres');
     return result === 1 ? 200 : 400;
   }
   async getClusters() {
@@ -25,30 +25,30 @@ export class DBManipulator {
     return clusters;
   }
   async getGenders() {
-    const clusters = await this.manipulator.getDataGroup(this.path, 'genders');
+    const clusters = await this.manipulator.getDataGroup(this.path, 'genres');
     return clusters;
   }
-  async getSubgenders() {
-    const clusters = await this.manipulator.getDataGroup(this.path, 'subgenders');
+  async getSubgenres() {
+    const clusters = await this.manipulator.getDataGroup(this.path, 'subgenres');
     return clusters;
   }
 
 
-  async addGenderCluster(gender_cluster) {
-    const result = await this.manipulator.addData(this.path, gender_cluster, 'gender_cluster');
+  async addGenreCluster(genre_cluster) {
+    const result = await this.manipulator.addData(this.path, genre_cluster, 'genre_cluster');
     return result === 1 ? 200 : 400;
   }
-  async addGenderGender(gender_gender) {
-    const result = await this.manipulator.addData(this.path, gender_gender, 'gender_gender');
+  async addGenreGenre(genre_genre) {
+    const result = await this.manipulator.addData(this.path, genre_genre, 'genre_genre');
     return result === 1 ? 200 : 400;
   }
 
-  async addGenderSubgender(gender_subgender) {
-    const result = await this.manipulator.addData(this.path, gender_subgender, 'gender_subgender');
+  async addGenreSubgenre(genre_subgenre) {
+    const result = await this.manipulator.addData(this.path, genre_subgenre, 'genre_subgenre');
     return result === 1 ? 200 : 400;
   }
-  async addSubgenderSubgender(subgender_subgender) {
-    const result = await this.manipulator.addData(this.path, subgender_subgender, 'subgender_subgender');
+  async addSubgenreSubgenre(subgender_subgender) {
+    const result = await this.manipulator.addData(this.path, subgender_subgender, 'subgenre_subgenre');
     return result === 1 ? 200 : 400;
   }
   

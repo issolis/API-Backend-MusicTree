@@ -31,13 +31,13 @@ app.post("/addCluster", async (req, res) => {
   }
 });
 
-app.post("/addGender", async (req, res) => {  
+app.post("/addGenre", async (req, res) => {  
   try {
-    const gender = req.body;
-    gender['date'] = new Date().toISOString(); 
+    const genre = req.body;
+    genre['date'] = new Date().toISOString(); 
 
 
-    const response = await __DBManipulator.addGender(gender);
+    const response = await __DBManipulator.addGenre(genre);
     
     console.log('status ', response);
 
@@ -51,13 +51,13 @@ app.post("/addGender", async (req, res) => {
   }
 });
 
-app.post("/addSubgender", async (req, res) => {  
+app.post("/addSubgenre", async (req, res) => {  
   try {
-    const subgender = req.body;
-    subgender['date'] = new Date().toISOString(); 
+    const subgenre = req.body;
+    subgenre['date'] = new Date().toISOString(); 
 
 
-    const response = await __DBManipulator.addSubgender(subgender);
+    const response = await __DBManipulator.addSubgenre(subgenre);
     
     console.log('status ', response);
 
@@ -88,40 +88,40 @@ app.get("/getAllClusters", async (req, res) => {
 });
 
 
-app.get("/getAllGenders", async (req, res) => {
+app.get("/getAllGenres", async (req, res) => {
   try {
-    const genders = await __DBManipulator.getGenders();
+    const genres = await __DBManipulator.getGenders();
 
-    if (genders.length === 0) {
+    if (genres.length === 0) {
       return res.status(404).send({ message: "No genders found" });
     }
 
-    res.status(200).send(genders);
+    res.status(200).send(genres);
 
   } catch (error) {
     res.status(500).send({ message: "Server error", error: error.message });
   }
 });
 
-app.get("/getAllSubgenders", async (req, res) => {
+app.get("/getAllSubgenres", async (req, res) => {
   try {
-    const genders = await __DBManipulator.getSubgenders();
+    const subgenres = await __DBManipulator.getSubgenres();
 
-    if (genders.length === 0) {
+    if (subgenres.length === 0) {
       return res.status(404).send({ message: "No subgenders found" });
     }
 
-    res.status(200).send(genders);
+    res.status(200).send(subgenres);
 
   } catch (error) {
     res.status(500).send({ message: "Server error", error: error.message });
   }
 });
 
-app.post("/addGenderCluster", async (req, res) => {  
+app.post("/addGenreCluster", async (req, res) => {  
   try {
-    const gender_cluster = req.body;
-    const response = await __DBManipulator.addGenderCluster(gender_cluster);
+    const genre_cluster = req.body;
+    const response = await __DBManipulator.addGenreCluster(genre_cluster);
     console.log('status ', response);
 
     if (response == 200) {
@@ -134,10 +134,10 @@ app.post("/addGenderCluster", async (req, res) => {
   }
 });
 
-app.post("/addGenderGender", async (req, res) => {  
+app.post("/addGenreGenre", async (req, res) => {  
   try {
-    const gender_gender = req.body;
-    const response = await __DBManipulator.addGenderGender(gender_gender);
+    const genre_genre = req.body;
+    const response = await __DBManipulator.addGenreGenre(genre_genre);
     console.log('status ', response);
 
     if (response == 200) {
@@ -150,10 +150,10 @@ app.post("/addGenderGender", async (req, res) => {
   }
 });
 
-app.post("/addGenderSubgender", async (req, res) => {  
+app.post("/addGenreSubgenre", async (req, res) => {  
   try {
-    const gender_subgender = req.body;
-    const response = await __DBManipulator.addGenderSubgender(gender_subgender);
+    const genre_subgenre = req.body;
+    const response = await __DBManipulator.addGenreSubgenre(genre_subgenre);
     console.log('status ', response);
 
     if (response == 200) {
@@ -166,10 +166,10 @@ app.post("/addGenderSubgender", async (req, res) => {
   }
 });
 
-app.post("/addSubgenderSubgender", async (req, res) => {  
+app.post("/addSubgenreSubgenre", async (req, res) => {  
   try {
-    const subgender_subgender = req.body;
-    const response = await __DBManipulator.addSubgenderSubgender(subgender_subgender);
+    const subgenre_subgenre = req.body;
+    const response = await __DBManipulator.addSubgenreSubgenre(subgenre_subgenre);
     console.log('status ', response);
 
     if (response == 200) {
@@ -181,8 +181,6 @@ app.post("/addSubgenderSubgender", async (req, res) => {
     res.status(500).send({ message: "Server error", error: error.message });
   }
 });
-
-
 
 
 app.listen(port, () => {
