@@ -1,14 +1,18 @@
 import { JSONManipulator } from './JSONManipulator.js';
-
+import { Cluster } from "./tables/Cluster.js";
 export class DBManipulator {
   constructor() {
     this.manipulator = new JSONManipulator();
     this.path = './DB.json';
   }
 
-  async addCluster(cluster) {
-    const result = await this.manipulator.addData(this.path, cluster, 'clusters');
-    return result === 1 ? 200 : 400;
+  async addCluster(body) {
+    try {
+        const result =  new Cluster(body).insert(); 
+        return result 
+      } catch (error) {
+        return 500; 
+      }
   }
 
   async addGenre(genre) {
