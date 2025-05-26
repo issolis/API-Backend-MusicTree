@@ -1,12 +1,13 @@
 import { Pool } from 'pg';
+import 'dotenv/config'; 
 
 const pool = new Pool({
-  user: 'db_musictree',
-  host: 'dpg-d0ns9lgdl3ps73dqeq30-a.oregon-postgres.render.com',
-  database: 'db_musictree_9hik',
-  password: 'HuOaxn7mr3NQfOUJK4cQniNNKDopEdNv',
-  port: 5432,
-  ssl: { rejectUnauthorized: false }
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: Number(process.env.DB_PORT),
+  ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false
 });
 
 export default pool;

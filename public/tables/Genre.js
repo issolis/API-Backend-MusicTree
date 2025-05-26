@@ -141,7 +141,6 @@ export class Genre {
     }
   }
 
-
   static async getChilds() {
     try {
         const result = {
@@ -185,6 +184,35 @@ export class Genre {
         };
     }
   }
+
+  static async getIdByName(name) {
+  try {
+    const result = await pool.query(
+      `SELECT id FROM genre WHERE name = $1`,
+      [name]
+    );
+
+    if (result.rows.length === 0) {
+      return {
+        success: false,
+        message: `No genre found with name '${name}'`
+      };
+    }
+
+    return {
+      success: true,
+      message: "Genre ID obtained successfully",
+      id: result.rows[0].id
+    };
+  } catch (error) {
+    console.error("Failed to get genre ID by name:", error.message);
+    return {
+      success: false,
+      error: error.message,
+      message: "Failed to get genre ID by name"
+    };
+  }
+}
 
 
 }

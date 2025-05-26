@@ -3,6 +3,8 @@ import { DBManipulator } from './public/DBManipulator.js';
 import bodyParser from "body-parser";
 import { Cluster } from "./public/tables/Cluster.js";
 import { Genre } from "./public/tables/Genre.js";
+import { SubgenreRelation } from "./public/tables/SubgenreRelation.js";
+import { ClusterGenreRelation } from "./public/tables/ClusterGenreRelation.js";
 
 
 const app = express();
@@ -13,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); 
 
 app.get("/", (req, res) => {
-  res.send("Hello, World!"); 
+  res.send("API-MusicTree"); 
 });
 
 // ----------------- Cluster --------------------- //
@@ -70,10 +72,38 @@ app.get("/genre/getChilds",  async (req, res) => {
   res.status(result.success ? 200 : 500).send(result);
 } )
 
+app.get("/genre/idByName/:name", async (req, res) => {
+  const result = await Genre.getIdByName(req.params.name);
+  res.status(result.success ? 200 : 500).send(result);
+});
+
+// ----------------- Subgenre Relation--------------------- //
+
+app.post("/subgenreRelation/insert", async (req, res) => {  
+  const result = await new SubgenreRelation(req.body).insert();
+  res.status(result.success ? 200 : 500).send(result);
+});
+
+app.get("/subgenreRelation/getAll",  async (req, res) => {
+  const result = await SubgenreRelation.getAll();
+  res.status(result.success ? 200 : 500).send(result);
+} )
 
 
+// ----------------- Gender Cluster--------------------- //
+
+app.post("/clusterGenreRelation/insert", async (req, res) => {  
+  const result = await new ClusterGenreRelation(req.body).insert();
+  res.status(result.success ? 200 : 500).send(result);
+});
+
+app.get("/clusterGenreRelation/getAll",  async (req, res) => {
+  const result = await ClusterGenreRelation.getAll();
+  res.status(result.success ? 200 : 500).send(result);
+} )
 
 
+// ----------------- Listen --------------------- //
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
