@@ -9,9 +9,9 @@ export class Genre {
     mode = null,
     metric = null,
     tone = null,
-    colorR = 0,
-    colorG = 0,
-    colorB = 0,
+    color = '',
+    avrSongDuration = null,
+    volume = null, 
     is_subgenre = false,
     country = '',
     creation_year = null
@@ -23,33 +23,84 @@ export class Genre {
     this.mode = mode;
     this.metric = metric;
     this.tone = tone;
-    this.colorR = colorR;
-    this.colorG = colorG;
-    this.colorB = colorB;
+    this.color = color;
+    this.avrSongDuration = avrSongDuration;
+    this.volume = volume;
     this.is_subgenre = is_subgenre;
     this.country = country;
     this.creation_year = creation_year;
     this.created_date = new Date();
   }
 
+  static async generateUniqueId() {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    function generateId() {
+      let id = '';
+      while (id.length < 12) {
+        const randomChar = chars.charAt(Math.floor(Math.random() * chars.length));
+        if (id.length === 0 || randomChar !== id[id.length - 1]) {
+          id += randomChar;
+        }
+      }
+      return 'C-' + id;
+    }
+
+    let uniqueId;
+    let exists = true;
+
+    while (exists) {
+      uniqueId = generateId();
+
+      
+      const result = await pool.query(
+        `SELECT 1 FROM genre WHERE id = $1 LIMIT 1`,
+        [uniqueId]
+      );
+
+      exists = result.rowCount > 0;
+    }
+
+    return uniqueId;
+  }
+
   async insert() {
     try {
+      const id = await Genre.generateUniqueId();
+
       const query = `
         INSERT INTO genre 
-        (name, description, is_active, bpm, mode, metric, tone, 
-         colorR, colorG, colorB, is_subgenre, country, creation_year, created_date)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
+        (id, name, description, is_active, bpm, mode, metric, tone, 
+        color, avrSongDuration, volume, is_subgenre, country, creation_year, created_date)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
       `;
+
       const values = [
-        this.name, this.description, this.is_active, this.bpm, this.mode,
-        this.metric, this.tone, this.colorR, this.colorG, this.colorB,
-        this.is_subgenre, this.country, this.creation_year, this.created_date
+        id,                
+        this.name, 
+        this.description, 
+        this.is_active, 
+        this.bpm, 
+        this.mode,
+        this.metric, 
+        this.tone, 
+        this.color, 
+        this.avrSongDuration, 
+        this.volume,       
+        this.is_subgenre, 
+        this.country, 
+        this.creation_year, 
+        this.created_date
       ];
 
       await pool.query(query, values);
 
-      console.log("Genre created successfully");
-      return { success: true, message: "Genre created successfully" };
+      console.log("Genre created successfully with id:", id);
+
+      return {
+        success: true,
+        message: "Genre created successfully",
+        id
+      };
 
     } catch (error) {
       console.error("Failed to create genre:", error.message);
@@ -60,6 +111,8 @@ export class Genre {
       };
     }
   }
+
+
 
   static async getAll() {
     try {
@@ -213,6 +266,39 @@ export class Genre {
     };
   }
 }
+
+  static async getStatsByName(name) {
+    try {
+      const query = `
+        SELECT bpm, mode, metric, tone, avrSongDuration, volume
+        FROM genre
+        WHERE name = $1
+      `;
+      const result = await pool.query(query, [name]);
+
+      if (result.rows.length === 0) {
+        return {
+          success: false,
+          message: `Genre with name '${name}' not found`
+        };
+      }
+
+      return {
+        success: true,
+        message: 'Genre statistics retrieved successfully',
+        data: result.rows[0]
+      };
+
+    } catch (error) {
+      console.error("Failed to fetch genre stats by name:", error.message);
+      return {
+        success: false,
+        error: error.message,
+        message: "Error fetching genre statistics"
+      };
+    }
+  }
+
 
 
 }
