@@ -6,6 +6,7 @@ import { SubgenreRelation } from "./public/tables/SubgenreRelation.js";
 import { ClusterGenreRelation } from "./public/tables/ClusterGenreRelation.js";
 import { MGPC } from "./public/Calculatations/MGPC.js";
 import { MGPCRelation } from "./public/tables/MGPCRelation.js";
+import { GenderReport } from "./public/reports/GenderReport.js";
 
 
 const app = express();
@@ -87,6 +88,8 @@ app.get("/genre/getStatsByName/:name", async (req, res) => {
   res.status(result.success ? 200 : 500).send(result);
 });
 
+
+
 // ----------------- Subgenre Relation--------------------- //
 
 app.post("/subgenreRelation/insert", async (req, res) => {  
@@ -144,6 +147,13 @@ app.get("/mgpcRelation/getAll",  async (req, res) => {
   res.status(result.success ? 200 : 500).send(result);
 }); 
 
+
+// ----------------- Reports --------------------- //
+
+app.get("/report/gender/getAllWithRelations", async (req, res) => {
+  const result = await GenderReport.getAllWithRelations(req.params.name);
+  res.status(result.success ? 200 : 500).send(result);
+});
 
 // ----------------- Listen --------------------- //
 app.listen(port, () => {

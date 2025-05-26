@@ -1,7 +1,7 @@
 import pool from './DBConnection.js';
 
 export class MGPCRelation {
-  constructor({ genre_a, genre_b, mgpc }) {
+  constructor({ genre_a, genre_b, mgpc, influence }) {
     if (genre_a > genre_b) {
       [genre_a, genre_b] = [genre_b, genre_a];
     }
@@ -9,17 +9,18 @@ export class MGPCRelation {
     this.genre_a = genre_a;
     this.genre_b = genre_b;
     this.mgpc = mgpc;
+    this.influence = influence;
   }
 
   async insert() {
     try {
       const query = `
-        INSERT INTO mgpc_relation (genre_a, genre_b, mgpc)
-        VALUES ($1, $2, $3)
+        INSERT INTO mgpc_relation (genre_a, genre_b, mgpc, influence)
+        VALUES ($1, $2, $3, $4)
         RETURNING id
       `;
 
-      const values = [this.genre_a, this.genre_b, this.mgpc];
+      const values = [this.genre_a, this.genre_b, this.mgpc, this.influence];
 
       const result = await pool.query(query, values);
 
