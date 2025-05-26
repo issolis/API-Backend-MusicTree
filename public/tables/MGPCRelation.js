@@ -2,7 +2,6 @@ import pool from './DBConnection.js';
 
 export class MGPCRelation {
   constructor({ genre_a, genre_b, mgpc }) {
-    // Asegura que genre_a sea alfabéticamente menor que genre_b
     if (genre_a > genre_b) {
       [genre_a, genre_b] = [genre_b, genre_a];
     }

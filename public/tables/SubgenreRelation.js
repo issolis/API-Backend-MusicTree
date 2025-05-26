@@ -1,17 +1,18 @@
 import pool from './DBConnection.js';
 
 export class SubgenreRelation {
-  constructor({ parent, child }) {
+  constructor({ parent, child, mgpc }) {
     this.parent = parent;
     this.child = child;
+    this.mgpc = mgpc
   }
 
   async insert() {
     try {
       const result = await pool.query(
-        `INSERT INTO subgenre_relation (parent, child) 
-         VALUES ($1, $2)`,
-        [this.parent, this.child]
+        `INSERT INTO subgenre_relation (parent, child, mgpc) 
+         VALUES ($1, $2, $3)`,
+        [this.parent, this.child, this.mgpc]
       );
       console.log("Subgenre relation created successfully");
       return {

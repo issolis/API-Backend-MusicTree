@@ -3,36 +3,40 @@ import pool from './DBConnection.js';
 export class Genre {
   constructor({
     name,
-    description = '',
+    description = "",
     is_active = true,
-    bpm = null,
-    mode = null,
-    metric = null,
-    tone = null,
-    color = '',
-    avrSongDuration = null,
-    volume = null, 
+    bpmL = 60,
+    bpmU = 60,
+    mode,
+    metric,
+    tone,
+    color = "#FFFFFF",
+    avrSongDuration,
     is_subgenre = false,
-    country = '',
-    creation_year = null
+    country,
+    creation_year,
+    created_date = new Date(),
+    volume = 60  
   }) {
     this.name = name;
     this.description = description;
     this.is_active = is_active;
-    this.bpm = bpm;
+    this.bpmL = bpmL;
+    this.bpmU = bpmU;
     this.mode = mode;
     this.metric = metric;
     this.tone = tone;
     this.color = color;
     this.avrSongDuration = avrSongDuration;
-    this.volume = volume;
     this.is_subgenre = is_subgenre;
     this.country = country;
     this.creation_year = creation_year;
-    this.created_date = new Date();
+    this.created_date = created_date;
+    this.volume = volume;  
   }
 
-  static async generateUniqueId() {
+
+  static async generateUniqueId(is_subgenre) {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     function generateId() {
       let id = '';
@@ -42,7 +46,10 @@ export class Genre {
           id += randomChar;
         }
       }
-      return 'C-' + id;
+  
+      if (is_subgenre === true)
+        return 'S-' + id;
+      return 'G-' + id;
     }
 
     let uniqueId;
@@ -65,31 +72,32 @@ export class Genre {
 
   async insert() {
     try {
-      const id = await Genre.generateUniqueId();
+      const id = await Genre.generateUniqueId(this.is_subgenre);
 
       const query = `
         INSERT INTO genre 
-        (id, name, description, is_active, bpm, mode, metric, tone, 
-        color, avrSongDuration, volume, is_subgenre, country, creation_year, created_date)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
+        (id, name, description, is_active, bpmL, bpmU, mode, metric, tone,
+        color, avrSongDuration, is_subgenre, country, creation_year, created_date, volume)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
       `;
 
       const values = [
-        id,                
-        this.name, 
-        this.description, 
-        this.is_active, 
-        this.bpm, 
+        id,
+        this.name,
+        this.description,
+        this.is_active,
+        this.bpmL,
+        this.bpmU,
         this.mode,
-        this.metric, 
-        this.tone, 
-        this.color, 
-        this.avrSongDuration, 
-        this.volume,       
-        this.is_subgenre, 
-        this.country, 
-        this.creation_year, 
-        this.created_date
+        this.metric,
+        this.tone,
+        this.color,
+        this.avrSongDuration,
+        this.is_subgenre,
+        this.country,
+        this.creation_year,
+        this.created_date,
+        this.volume 
       ];
 
       await pool.query(query, values);
@@ -270,7 +278,7 @@ export class Genre {
   static async getStatsByName(name) {
     try {
       const query = `
-        SELECT bpm, mode, metric, tone, avrSongDuration, volume
+        SELECT bpmU, bpmL, mode, metric, tone, avrSongDuration, volume
         FROM genre
         WHERE name = $1
       `;

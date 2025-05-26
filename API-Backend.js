@@ -145,9 +145,6 @@ app.get("/mgpcRelation/getAll",  async (req, res) => {
 }); 
 
 
-
-
-
 // ----------------- Listen --------------------- //
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);

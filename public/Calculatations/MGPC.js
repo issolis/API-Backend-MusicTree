@@ -8,7 +8,8 @@ const W6 = 0.16;
 export class MGPC {
     constructor({ genreA, genreB }) {
         const {
-            bpm: bpmA,
+            bpmL: bpmAL,
+            bpmU: bpmAU,
             mode: modeA,
             metric: metricA,
             tone: toneA,
@@ -17,13 +18,17 @@ export class MGPC {
         } = genreA;
 
         const {
-            bpm: bpmB,
+            bpmL: bpmBL,
+            bpmU: bpmBU,
             mode: modeB,
             metric: metricB,
             tone: toneB,
             avrSongDuration: avrSongDurationB,
             volume: volumeB
         } = genreB;
+
+        const bpmA = (bpmAL + bpmAU) / 2;
+        const bpmB = (bpmBL + bpmBU) / 2;
 
         this.genreA = {
             bpm: bpmA,
