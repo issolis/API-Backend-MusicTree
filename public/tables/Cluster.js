@@ -1,3 +1,4 @@
+import { ID } from '../Calculatations/ID.js';
 import pool from './DBConnection.js';
 
 export class Cluster {
@@ -12,33 +13,9 @@ export class Cluster {
     this.is_active = is_active;
     this.created_date = created_date;
   }
-
-  static async generateUniqueId() {
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-    function randomString(length) {
-      let result = '';
-      for (let i = 0; i < length; i++) {
-        result += chars.charAt(Math.floor(Math.random() * chars.length));
-      }
-      return result;
-    }
-
-    let id;
-    let exists = true;
-
-    while (exists) {
-      id = 'C-' + randomString(12);
-      const res = await pool.query('SELECT 1 FROM cluster WHERE id = $1', [id]);
-      exists = res.rows.length > 0;
-    }
-
-    return id;
-  }
-
   async insert() {
     try {
-      const id = await Cluster.generateUniqueId();
+      const id = await ID.generateUniqueId('C', 'cluster');
       await pool.query(
         `INSERT INTO cluster (id, name, description, is_active, created_date)
         VALUES ($1, $2, $3, $4, $5)`,

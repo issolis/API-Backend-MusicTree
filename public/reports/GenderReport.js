@@ -13,7 +13,7 @@ export class GenderReport {
         creation_year: genre.creation_year,
         origin_country: genre.origin_country,
         mode: genre.mode,
-        bpm: genre.bpm,  // objeto { min, max }
+        bpm: genre.bpm,  
         dominant_tone: genre.dominant_tone,
         typical_volume_db: genre.typical_volume_db,
         time_signature: genre.time_signature,

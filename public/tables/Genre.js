@@ -1,4 +1,5 @@
 import pool from './DBConnection.js';
+import { ID } from '../Calculatations/ID.js';
 
 export class Genre {
   constructor({
@@ -35,44 +36,10 @@ export class Genre {
     this.volume = volume;  
   }
 
-
-  static async generateUniqueId(is_subgenre) {
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    function generateId() {
-      let id = '';
-      while (id.length < 12) {
-        const randomChar = chars.charAt(Math.floor(Math.random() * chars.length));
-        if (id.length === 0 || randomChar !== id[id.length - 1]) {
-          id += randomChar;
-        }
-      }
-  
-      if (is_subgenre === true)
-        return 'S-' + id;
-      return 'G-' + id;
-    }
-
-    let uniqueId;
-    let exists = true;
-
-    while (exists) {
-      uniqueId = generateId();
-
-      
-      const result = await pool.query(
-        `SELECT 1 FROM genre WHERE id = $1 LIMIT 1`,
-        [uniqueId]
-      );
-
-      exists = result.rowCount > 0;
-    }
-
-    return uniqueId;
-  }
-
   async insert() {
     try {
-      const id = await Genre.generateUniqueId(this.is_subgenre);
+      const fLetter = (this.is_subgenre === true) ? 'S':'G'; 
+      const id = await ID.generateUniqueId(fLetter, 'genre');;
 
       const query = `
         INSERT INTO genre 
