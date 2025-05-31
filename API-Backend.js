@@ -6,7 +6,7 @@ import { SubgenreRelation } from "./public/tables/SubgenreRelation.js";
 import { ClusterGenreRelation } from "./public/tables/ClusterGenreRelation.js";
 import { MGPC } from "./public/Calculatations/MGPC.js";
 import { MGPCRelation } from "./public/tables/MGPCRelation.js";
-import { GenderReport } from "./public/reports/GenderReport.js";
+import { GenreReport } from "./public/reports/GenderReport.js";
 
 const app = express();
 const port = 3001;
@@ -146,7 +146,7 @@ app.get("/mgpcRelation/getAll",  async (req, res) => {
 // ----------------- Reports --------------------- //
 
 app.get("/report/gender/getAllWithRelations", async (req, res) => {
-  const result = await GenderReport.getAllWithRelations(req.params.name);
+  const result = await GenreReport.getAllWithRelations(req.params.name);
   res.status(result.success ? 200 : 500).send(result);
 });
 

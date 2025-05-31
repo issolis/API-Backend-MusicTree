@@ -1,6 +1,6 @@
 import pool from '../tables/DBConnection.js';
 
-export class GenderReport {
+export class GenreReport {
   static async getAllWithRelations() {
     try {
       const result = await pool.query('SELECT * FROM get_all_genres_with_relations()');
