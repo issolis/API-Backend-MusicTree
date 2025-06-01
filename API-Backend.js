@@ -7,6 +7,13 @@ import { ClusterGenreRelation } from "./public/tables/ClusterGenreRelation.js";
 import { MGPC } from "./public/Calculatations/MGPC.js";
 import { MGPCRelation } from "./public/tables/MGPCRelation.js";
 import { GenreReport } from "./public/reports/GenderReport.js";
+import { Artist } from "./public/tables/Artist.js";
+import { ActivityPeriod } from "./public/tables/ActivityPeriod.js";
+import { Album } from "./public/tables/Album.js";
+import { CommentThread } from "./public/tables/CommentThread.js";
+import { PhotoAlbum } from "./public/tables/PhotoAlbum.js";
+import { Calendar } from "./public/tables/Calendar.js";
+import { Member } from "./public/tables/Member.js";
 
 const app = express();
 const port = 3001;
@@ -142,6 +149,125 @@ app.get("/mgpcRelation/getAll",  async (req, res) => {
   const result = await MGPCRelation.getAll();
   res.status(result.success ? 200 : 500).send(result);
 }); 
+// ----------------- Artist --------------------- //
+app.post("/artist/insert", async (req, res) => {  
+  const result = await new Artist(req.body).insert();
+  res.status(result.success ? 200 : 500).send(result);
+});
+
+app.get("/artist/getAll",  async (req, res) => {
+  const result = await Artist.getAll();
+  res.status(result.success ? 200 : 500).send(result);
+}); 
+
+app.get("/artist/getActive",  async (req, res) => {
+  const result = await Artist.getActive();
+  res.status(result.success ? 200 : 500).send(result);
+});
+
+app.get("/artist/getIdByName/:name", async (req, res) => {
+  const result = await Artist.getIdByName(req.params.name);
+  res.status(result.success ? 200 : 500).send(result);
+});
+
+// ----------------- Activity Period --------------------- //
+
+app.post("/activityPeriod/insert", async (req, res) => {  
+  const result = await new ActivityPeriod(req.body).insert();
+  res.status(result.success ? 200 : 500).send(result);
+});
+
+app.get("/activityPeriod/getByArtistId/:id",  async (req, res) => {
+  const result = await ActivityPeriod.getByArtistId(req.params.id);
+  res.status(result.success ? 200 : 500).send(result);
+}); 
+
+// ----------------- Album --------------------- //
+
+app.post("/album/insert", async (req, res) => {  
+  const result = await new Album(req.body).insert();
+  res.status(result.success ? 200 : 500).send(result);
+});
+
+app.get("/album/getByArtistId/:id",  async (req, res) => {
+  const result = await Album.getByArtistId(req.params.id);
+  res.status(result.success ? 200 : 500).send(result);
+}); 
+
+app.get("/album/getAll",  async (req, res) => {
+  console.log("Hello"); 
+  const result = await Album.getAll();
+  res.status(result.success ? 200 : 500).send(result);
+}); 
+
+// ----------------- CommentThread --------------------- //
+
+app.post("/commentThread/insert", async (req, res) => {  
+  const result = await new CommentThread(req.body).insert();
+  res.status(result.success ? 200 : 500).send(result);
+});
+
+app.get("/commentThread/getByArtistId/:id",  async (req, res) => {
+  const result = await CommentThread.getByArtistId(req.params.id);
+  res.status(result.success ? 200 : 500).send(result);
+}); 
+
+app.get("/commentThread/getAll",  async (req, res) => {
+  const result = await CommentThread.getAll();
+  res.status(result.success ? 200 : 500).send(result);
+}); 
+
+// ----------------- PhotoAlbum --------------------- //
+
+app.post("/photoAlbum/insert", async (req, res) => {  
+  const result = await new PhotoAlbum(req.body).insert();
+  res.status(result.success ? 200 : 500).send(result);
+});
+
+app.get("/photoAlbum/getByArtistId/:id",  async (req, res) => {
+  const result = await PhotoAlbum.getByArtistId(req.params.id);
+  res.status(result.success ? 200 : 500).send(result);
+}); 
+
+app.get("/photoAlbum/getAll",  async (req, res) => {
+  const result = await PhotoAlbum.getAll();
+  res.status(result.success ? 200 : 500).send(result);
+}); 
+ 
+// ----------------- Calendar --------------------- //
+
+app.post("/calendar/insert", async (req, res) => {  
+  const result = await new Calendar(req.body).insert();
+  res.status(result.success ? 200 : 500).send(result);
+});
+
+app.get("/calendar/getByArtistId/:id",  async (req, res) => {
+  const result = await Calendar.getByArtistId(req.params.id);
+  res.status(result.success ? 200 : 500).send(result);
+}); 
+
+app.get("/calendar/getAll",  async (req, res) => {
+  const result = await Calendar.getAll();
+  res.status(result.success ? 200 : 500).send(result);
+}); 
+
+// ----------------- Member --------------------- //
+
+app.post("/member/insert", async (req, res) => {  
+  const result = await new Member(req.body).insert();
+  res.status(result.success ? 200 : 500).send(result);
+});
+
+app.get("/member/getByArtistId/:id",  async (req, res) => {
+  const result = await Member.getByArtistId(req.params.id);
+  res.status(result.success ? 200 : 500).send(result);
+}); 
+
+app.get("/member/getAll",  async (req, res) => {
+  const result = await Member.getAll();
+  res.status(result.success ? 200 : 500).send(result);
+}); 
+ 
 
 // ----------------- Reports --------------------- //
 
@@ -149,6 +275,7 @@ app.get("/report/gender/getAllWithRelations", async (req, res) => {
   const result = await GenreReport.getAllWithRelations(req.params.name);
   res.status(result.success ? 200 : 500).send(result);
 });
+
 
 // ----------------- Listen --------------------- //
 
