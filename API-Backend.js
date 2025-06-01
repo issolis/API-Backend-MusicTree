@@ -14,6 +14,7 @@ import { CommentThread } from "./public/tables/CommentThread.js";
 import { PhotoAlbum } from "./public/tables/PhotoAlbum.js";
 import { Calendar } from "./public/tables/Calendar.js";
 import { Member } from "./public/tables/Member.js";
+import { ArtistGenre } from "./public/tables/ArtistGenre.js";
 
 const app = express();
 const port = 3001;
@@ -265,6 +266,23 @@ app.get("/member/getByArtistId/:id",  async (req, res) => {
 
 app.get("/member/getAll",  async (req, res) => {
   const result = await Member.getAll();
+  res.status(result.success ? 200 : 500).send(result);
+}); 
+
+// ----------------- ArtistGenre --------------------- //
+
+app.post("/artistGenre/insert", async (req, res) => {  
+  const result = await new ArtistGenre(req.body).insert();
+  res.status(result.success ? 200 : 500).send(result);
+});
+
+app.get("/artistGenre/getByArtistId/:id",  async (req, res) => {
+  const result = await ArtistGenre.getByArtistId(req.params.id);
+  res.status(result.success ? 200 : 500).send(result);
+}); 
+
+app.get("/artistGenre/getAll",  async (req, res) => {
+  const result = await ArtistGenre.getAll();
   res.status(result.success ? 200 : 500).send(result);
 }); 
  
