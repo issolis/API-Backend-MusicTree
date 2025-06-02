@@ -1,6 +1,6 @@
 import { Genre } from '../tables/Genre.js';
-import { ID } from '../Calculatations/ID.js';
-import { MGPC } from '../Calculatations/MGPC.js';
+import { ID } from '../Calculations/ID.js';
+import { MGPC } from '../Calculations/MGPC.js';
 import { SubgenreRelation } from '../tables/SubgenreRelation.js';
 import { MGPCRelation } from '../tables/MGPCRelation.js';
 

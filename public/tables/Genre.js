@@ -1,5 +1,5 @@
 import pool from './DBConnection.js';
-import { ID } from '../Calculatations/ID.js';
+import { ID } from '../Calculations/ID.js';
 
 export class Genre {
   constructor({
