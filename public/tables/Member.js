@@ -71,4 +71,34 @@ export class Member {
       };
     }
   }
+  static async getIdByFullName(name, last_name1, last_name2 = null) {
+    try {
+      const result = await pool.query(
+        `SELECT id FROM member 
+        WHERE name = $1 AND last_name1 = $2 AND 
+              ($3::VARCHAR IS NULL AND last_name2 IS NULL OR last_name2 = $3)`,
+        [name, last_name1, last_name2]
+      );
+
+      if (result.rows.length === 0) {
+        return {
+          success: false,
+          message: 'No member found with the given name',
+        };
+      }
+
+      return {
+        success: true,
+        message: 'Member ID retrieved successfully',
+        id: result.rows[0].id
+      };
+    } catch (error) {
+      console.error('Failed to retrieve member ID by full name:', error.message);
+      return {
+        success: false,
+        message: 'Failed to fetch member ID',
+        error: error.message
+      };
+    }
+  }
 }

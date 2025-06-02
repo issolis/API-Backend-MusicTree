@@ -15,6 +15,7 @@ import { PhotoAlbum } from "./public/tables/PhotoAlbum.js";
 import { Calendar } from "./public/tables/Calendar.js";
 import { Member } from "./public/tables/Member.js";
 import { ArtistGenre } from "./public/tables/ArtistGenre.js";
+import { ActivityPeriodMember } from "./public/tables/ActivyPeriodMember.js";
 
 const app = express();
 const port = 3001;
@@ -269,6 +270,19 @@ app.get("/member/getAll",  async (req, res) => {
   res.status(result.success ? 200 : 500).send(result);
 }); 
 
+
+app.get("/member/getIdByFullName/:name/:last_name1/:last_name2", async (req, res) => {
+  const { name, last_name1, last_name2 } = req.params;
+  const result = await Member.getIdByFullName(name, last_name1, last_name2);
+  res.status(result.success ? 200 : 500).send(result);
+});
+
+app.get("/member/getIdByFullName/:name/:last_name1", async (req, res) => {
+  const { name, last_name1 } = req.params;
+  const result = await Member.getIdByFullName(name, last_name1);
+  res.status(result.success ? 200 : 500).send(result);
+});
+
 // ----------------- ArtistGenre --------------------- //
 
 app.post("/artistGenre/insert", async (req, res) => {  
@@ -283,6 +297,24 @@ app.get("/artistGenre/getByArtistId/:id",  async (req, res) => {
 
 app.get("/artistGenre/getAll",  async (req, res) => {
   const result = await ArtistGenre.getAll();
+  res.status(result.success ? 200 : 500).send(result);
+}); 
+ 
+
+// ----------------- ActivityPeriodMember --------------------- //
+
+app.post("/activityPeriodMember/insert", async (req, res) => {  
+  const result = await new ActivityPeriodMember(req.body).insert();
+  res.status(result.success ? 200 : 500).send(result);
+});
+
+app.get("/activityPeriodMember/getByMemberId/:id",  async (req, res) => {
+  const result = await ActivityPeriodMember.getByMemberId(req.params.id);
+  res.status(result.success ? 200 : 500).send(result);
+}); 
+
+app.get("/activityPeriodMember/getAll",  async (req, res) => {
+  const result = await ActivityPeriodMember.getAll();
   res.status(result.success ? 200 : 500).send(result);
 }); 
  
