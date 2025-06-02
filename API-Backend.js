@@ -15,7 +15,7 @@ import { PhotoAlbum } from "./public/tables/PhotoAlbum.js";
 import { Calendar } from "./public/tables/Calendar.js";
 import { Member } from "./public/tables/Member.js";
 import { ArtistGenre } from "./public/tables/ArtistGenre.js";
-import { ActivityPeriodMember } from "./public/tables/ActivyPeriodMember.js";
+import { ActivityPeriodMember } from "./public/tables/ActivityPeriodMember.js";
 
 const app = express();
 const port = 3001;
