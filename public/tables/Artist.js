@@ -1,4 +1,4 @@
-import { ID } from '../Calculatations/ID.js';
+import { ID } from '../Calculations/ID.js';
 import pool from './DBConnection.js';
 import { CommentThread } from './CommentThread.js'; 
 import { PhotoAlbum } from './PhotoAlbum.js';

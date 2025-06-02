@@ -4,7 +4,7 @@ import { Cluster } from "./public/tables/Cluster.js";
 import { Genre } from "./public/tables/Genre.js";
 import { SubgenreRelation } from "./public/tables/SubgenreRelation.js";
 import { ClusterGenreRelation } from "./public/tables/ClusterGenreRelation.js";
-import { MGPC } from "./public/Calculatations/MGPC.js";
+import { MGPC } from "./public/Calculations/MGPC.js";
 import { MGPCRelation } from "./public/tables/MGPCRelation.js";
 import { Artist } from "./public/tables/Artist.js";
 import { ActivityPeriod } from "./public/tables/ActivityPeriod.js";
