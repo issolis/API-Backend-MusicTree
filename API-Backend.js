@@ -6,7 +6,6 @@ import { SubgenreRelation } from "./public/tables/SubgenreRelation.js";
 import { ClusterGenreRelation } from "./public/tables/ClusterGenreRelation.js";
 import { MGPC } from "./public/Calculatations/MGPC.js";
 import { MGPCRelation } from "./public/tables/MGPCRelation.js";
-import { GenreReport } from "./public/reports/GenderReport.js";
 import { Artist } from "./public/tables/Artist.js";
 import { ActivityPeriod } from "./public/tables/ActivityPeriod.js";
 import { Album } from "./public/tables/Album.js";
@@ -16,6 +15,7 @@ import { Calendar } from "./public/tables/Calendar.js";
 import { Member } from "./public/tables/Member.js";
 import { ArtistGenre } from "./public/tables/ArtistGenre.js";
 import { ActivityPeriodMember } from "./public/tables/ActivityPeriodMember.js";
+import { GenreGeneration } from "./public/GenresGeneration/GenreGeneration.js";
 
 const app = express();
 const port = 3001;
@@ -318,13 +318,14 @@ app.get("/activityPeriodMember/getAll",  async (req, res) => {
   res.status(result.success ? 200 : 500).send(result);
 }); 
  
+// ----------------- genregeneration --------------------- //
 
-// ----------------- Reports --------------------- //
-
-app.get("/report/gender/getAllWithRelations", async (req, res) => {
-  const result = await GenreReport.getAllWithRelations(req.params.name);
+app.post("/genreGeneration/insert", async (req, res) => {  
+  const result = await new GenreGeneration(req.body).insert();
   res.status(result.success ? 200 : 500).send(result);
 });
+
+
 
 
 // ----------------- Listen --------------------- //

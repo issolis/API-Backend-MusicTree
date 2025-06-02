@@ -240,39 +240,51 @@ export class Genre {
       message: "Failed to get genre ID by name"
     };
   }
-}
+  }
 
   static async getStatsByName(name) {
-    try {
-      const query = `
-        SELECT bpmU, bpmL, mode, metric, tone, avrSongDuration, volume
-        FROM genre
-        WHERE name = $1
-      `;
-      const result = await pool.query(query, [name]);
+  try {
+    const query = `
+      SELECT bpmU, bpmL, mode, metric, tone, avrSongDuration, volume
+      FROM genre
+      WHERE name = $1
+    `;
+    const result = await pool.query(query, [name]);
 
-      if (result.rows.length === 0) {
-        return {
-          success: false,
-          message: `Genre with name '${name}' not found`
-        };
-      }
-
-      return {
-        success: true,
-        message: 'Genre statistics retrieved successfully',
-        data: result.rows[0]
-      };
-
-    } catch (error) {
-      console.error("Failed to fetch genre stats by name:", error.message);
+    if (result.rows.length === 0) {
       return {
         success: false,
-        error: error.message,
-        message: "Error fetching genre statistics"
+        message: `Genre with name '${name}' not found`
       };
     }
+
+    const row = result.rows[0];
+    const formattedData = {
+      bpmU: row.bpml !== undefined ? row.bpmu : row.bpmU,
+      bpmL: row.bpml !== undefined ? row.bpml : row.bpmL,
+      mode: row.mode,
+      metric: row.metric,
+      tone: row.tone,
+      avrSongDuration: row.avrsongduration ?? row.avrSongDuration,
+      volume: row.volume
+    };
+
+    return {
+      success: true,
+      message: 'Genre statistics retrieved successfully',
+      data: formattedData
+    };
+
+  } catch (error) {
+    console.error("Failed to fetch genre stats by name:", error.message);
+    return {
+      success: false,
+      error: error.message,
+      message: "Error fetching genre statistics"
+    };
   }
+  }
+
 
 }
 

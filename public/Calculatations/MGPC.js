@@ -85,6 +85,15 @@ export class MGPC {
         const durD = this.durationDistance(this.genreA.avrSongDuration, this.genreB.avrSongDuration);
         const metD = this.metricDistance(this.genreA.metric, this.genreB.metric);
 
+        console.log('modeD:', modeD);
+        console.log('bpmD:', bpmD);
+        console.log('toneD:', toneD);
+        console.log('volD:', volD);
+        console.log('durD:', durD);
+        console.log('metD:', metD);
+
+
+        console.log(this.genreA)
         return 1 - Math.sqrt(
             W1 * modeD ** 2 +
             W2 * bpmD ** 2 +
