@@ -4,7 +4,7 @@ import { MGPC } from '../Calculations/MGPC.js';
 import { SubgenreRelation } from '../tables/SubgenreRelation.js';
 import { MGPCRelation } from '../tables/MGPCRelation.js';
 
-export class GenreGeneration {
+export class GenreGenerationV1 {
   constructor({
     nombre,
     descripcion,
@@ -185,7 +185,4 @@ export class GenreGeneration {
         };
     }
     }
-
-
-
 }

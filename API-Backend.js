@@ -15,7 +15,8 @@ import { Calendar } from "./public/tables/Calendar.js";
 import { Member } from "./public/tables/Member.js";
 import { ArtistGenre } from "./public/tables/ArtistGenre.js";
 import { ActivityPeriodMember } from "./public/tables/ActivityPeriodMember.js";
-import { GenreGeneration } from "./public/GenresGeneration/GenreGeneration.js";
+import { GenreGenerationV1 } from "./public/GenresGeneration/GenreGenerationV1.js";
+import { GenreGenerationV2 } from "./public/GenresGeneration/GenreGenerationV2.js";
 
 const app = express();
 const port = 3001;
@@ -320,12 +321,16 @@ app.get("/activityPeriodMember/getAll",  async (req, res) => {
  
 // ----------------- genregeneration --------------------- //
 
-app.post("/genreGeneration/insert", async (req, res) => {  
-  const result = await new GenreGeneration(req.body).insert();
+app.post("/genreGenerationV1/insert", async (req, res) => {  
+  const result = await new GenreGenerationV1(req.body).insert();
   res.status(result.success ? 200 : 500).send(result);
 });
 
 
+app.post("/genreGenerationV2/insert", async (req, res) => {  
+  const result = await new GenreGenerationV2(req.body).insert();
+  res.status(result.success ? 200 : 500).send(result);
+});
 
 
 // ----------------- Listen --------------------- //
