@@ -17,6 +17,7 @@ import { ArtistGenre } from "./public/tables/ArtistGenre.js";
 import { ActivityPeriodMember } from "./public/tables/ActivityPeriodMember.js";
 import { GenreGenerationV1 } from "./public/GenresGeneration/GenreGenerationV1.js";
 import { GenreGenerationV2 } from "./public/GenresGeneration/GenreGenerationV2.js";
+import { ArtistGeneration } from "./public/ArtistGeneration/ArtistGeneration.js";
 
 const app = express();
 const port = 3001;
@@ -329,6 +330,14 @@ app.post("/genreGenerationV1/insert", async (req, res) => {
 
 app.post("/genreGenerationV2/insert", async (req, res) => {  
   const result = await new GenreGenerationV2(req.body).insert();
+  res.status(result.success ? 200 : 500).send(result);
+});
+
+
+// ----------------- artistgeneration --------------------- //
+
+app.post("/artistGeneration/insert", async (req, res) => {  
+  const result = await new ArtistGeneration(req.body).insert();
   res.status(result.success ? 200 : 500).send(result);
 });
 
