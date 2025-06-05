@@ -81,4 +81,26 @@ export class Album {
       };
     }
   }
+  async insert(client) {
+  try {
+    const id = this.artist_id + "-" + await ID.generateUniqueId('D', 'album');
+    await client.query(
+      `INSERT INTO album (id, title, release_date, duration, url_cover, artist_id)
+       VALUES ($1, $2, $3, $4, $5, $6)`,
+      [id, this.title, this.release_date, this.duration, this.url_cover, this.artist_id]
+    );
+
+    return {
+      success: true,
+      message: "Album inserted successfully",
+      id
+    };
+  } catch (error) {
+    return {
+      success: false,
+      message: "Failed to insert album",
+      error: error.message
+    };
+  }
+}
 }
