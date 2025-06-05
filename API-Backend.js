@@ -19,6 +19,7 @@ import { GenreGenerationV1 } from "./public/GenresGeneration/GenreGenerationV1.j
 import { GenreGenerationV2 } from "./public/GenresGeneration/GenreGenerationV2.js";
 import { ArtistGeneration } from "./public/ArtistGeneration/ArtistGeneration.js";
 import { AlbumGeneration } from "./public/AlbumGeneration/AlbumGeneration.js";
+import { MemberGeneration } from "./public/MemberGeneration/MemberGeneration.js";
 
 const app = express();
 const port = 3001;
@@ -342,10 +343,20 @@ app.post("/artistGeneration/insert", async (req, res) => {
   res.status(result.success ? 200 : 500).send(result);
 });
 
-// ----------------- albungeneration --------------------- //
+// ----------------- albumgeneration --------------------- //
 app.post("/albumGeneration/insert", async (req, res) => {
   try {
     const result = await AlbumGeneration.createFromJson(req.body.albums);
+    res.status(result.success ? 200 : 500).send(result);
+  } catch (error) {
+    res.status(500).send({ success: false, message: "Server error", error: error.message });
+  }
+});
+
+// ----------------- membergeneration --------------------- //
+app.post("/memberGeneration/insert", async (req, res) => {
+  try {
+    const result = await new MemberGeneration(req.body).insert();
     res.status(result.success ? 200 : 500).send(result);
   } catch (error) {
     res.status(500).send({ success: false, message: "Server error", error: error.message });
